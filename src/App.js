@@ -7,6 +7,7 @@ function App() {
     <div className="px-1 font-Poppins flex">
       <SideBar/>
       <MainDashboard/>
+      
 
     </div>
   );
