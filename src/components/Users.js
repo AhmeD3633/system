@@ -2,22 +2,54 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 
-const containerStyles = 'container mx-auto px-4 py-8';
-const cardStyles = 'bg-white shadow-md rounded-lg p-6';
 
 
 function Users() {
-
-
-
-
-  const [data, setData] = useState([]);
+  
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Filter data based on search input
-  const filteredData = data.filter((item) =>
-    item.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+ 
+  const users = [
+    {
+      name: "John Doe",
+      username: "johndoe123",
+      gender: "Male",
+      email: "john.doe@example.com"
+    },
+    {
+      name: "Jane Smith",
+      username: "janesmith456",
+      gender: "Female",
+      email: "jane.smith@example.com"
+    },
+    {
+      name: "David Johnson",
+      username: "davidjohnson789",
+      gender: "Male",
+      email: "david.johnson@example.com"
+    },
+    {
+      name: "Emily Davis",
+      username: "emilydavis321",
+      gender: "Female",
+      email: "emily.davis@example.com"
+    },
+    {
+      name: "Michael Brown",
+      username: "michaelbrown654",
+      gender: "Male",
+      email: "michael.brown@example.com"
+    }
+  ];
+
+ let filteredUsers = users.filter((user) =>
+    user.name.toLowerCase().includes(searchTerm.toLowerCase())
+);
+
+  const [data, setData] = useState([]);
+ 
+
+  
 
   useEffect(() => {
     // Fetch data from PHP API
@@ -35,7 +67,7 @@ function Users() {
 
   return (
 
-    <div className=" bg-gray-200 p-4 rounded-lg h-screen overflow-x-auto">
+    <div className=" w-full flex flex-col p-10 space-y-5">
       <div className="navbar">
         <div className="flex-1">
           <a className="btn btn-ghost text-xl"> <h1 className='leading-tight'>Helloo Namee <br /> <span className='text-[14px]'>have a nice day</span></h1></a>
@@ -69,17 +101,19 @@ function Users() {
         </div>
       </div>{/*navbar*/}
       <h1 className=' text-[#0088ff] mt-5 ms-8 text-[26px]  font-medium '>Users Dashboard</h1>
-      <div className=" bg-gray-200 flex flex-col p-4">
+      <div className=" flex flex-col p-4">
         <div className="mb-6 flex justify-center ">
-          <input
-            type="text"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-
-            placeholder="  Search users..."
-            className="w-11/12 px-4 py-3 border border-gray-300 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-
+     
+        <input
+        type="text"
+        placeholder="Search by name"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className="input input-bordered w-full border-none bg-slate-100 shadow-md rounded-2xl text-primary focus:outline-none focus:shadow-md pl-10"
+        style={{ padding: '10px', marginBottom: '20px', width: '100%' }}
+      />
+         
+  
           <ul className="menu menu-horizontal px-1">
             <li>
               <details>
@@ -92,29 +126,16 @@ function Users() {
             </li>
           </ul>
 
-          {/* <div className="w-full max-w-lg bg-white rounded-lg shadow-md">
-        <h2 className=" font-bold">Users</h2>
-        <ul>
-          {filteredData.length > 0 ? (
-            filteredData.map((user) => (
-              <li key={user.id} className="py-2 border-b border-gray-200">
-                {user.name}
-              </li>
-            ))
-          ) : (
-            <li className="text-gray-500">No users found</li>
-          )}
-        </ul>
-      </div> */}
+      
 
         </div>
 
-        <div className='w-full justify-center items-center card bg-white'>
+        <div className='w-full justify-center items-center card border-[2px] border-[solid] border-[#0000002b] bg-white p-2'>
           <table className="table">
             <thead>
 
               <div><th className='text-[20px] p-5'>List Of Users</th></div>
-              <tr className='bg-sky-50 p-5'>
+              <tr className='bg-sky-50 p-5 text-[16px]  '>
                 <th className='w-3/12'>Name</th>
                 <th className='w-3/12'>Username</th>
                 <th className='w-3/12'>Gender</th>
@@ -122,28 +143,23 @@ function Users() {
               </tr>
             </thead>
             <tbody>
-              {/* row 1 */}
-              <tr>
-                <td>Cy Ganderton</td>
-                <td>Quality Control Specialist</td>
-                <td>Blue</td>
-                <td>name@gmail.com</td>
+            {filteredUsers.length > 0 ? (
+            filteredUsers.map((user, index) => (
+              <tr key={index}>
+                <td>{user.name}</td>
+                <td>{user.username}</td>
+                <td>{user.gender}</td>
+                <td>{user.email}</td>
               </tr>
-              {/* row 2 */}
-              <tr>
-                <td>Hart Hagerty</td>
-                <td>Desktop Support Technician</td>
-                <td>Purple</td>
-                <td>name@gmail.com</td>
-              </tr>
-              {/* row 3 */}
-              <tr>
-                <td>Brice Swyre</td>
-                <td>Tax Accountant</td>
-                <td>Red</td>
-                <td>name@gmail.com</td>
-              </tr>
-            </tbody>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="4" style={{ textAlign: 'center' }}>
+                No users found
+              </td>
+            </tr>
+          )}
+        </tbody>
           </table>
         </div>
       </div>
