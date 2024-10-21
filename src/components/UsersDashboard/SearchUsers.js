@@ -10,7 +10,7 @@ const SearchUsers = () => {
       {/* SEARCH USERS */}
       <div className="w-full flex items-center justify-between space-x-4">
         {/* SEARCH INPUT */}
-        <div className="relative w-full max-w-3xl">
+        <div className="relative w-full max-w-7xl">
           <input
             type="text"
             placeholder="Search"

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import SideBar from './SideBar';
 
 
 
@@ -51,23 +51,25 @@ function Users() {
 
   
 
-  useEffect(() => {
-    // Fetch data from PHP API
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('your-api-endpoint');
-        setData(response.data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
+  // useEffect(() => {
+  //   // Fetch data from PHP API
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await axios.get('your-api-endpoint');
+  //       setData(response.data);
+  //     } catch (error) {
+  //       console.error('Error fetching data:', error);
+  //     }
+  //   };
 
-    fetchData();
-  }, []);
+  //   fetchData();
+  // }, []);
 
   return (
-
+    <div className="px-1 font-Poppins flex w-full justify-center ">
+    <SideBar/>
     <div className=" w-full flex flex-col p-10 space-y-5">
+     
       <div className="navbar">
         <div className="flex-1">
           <a className="btn btn-ghost text-xl"> <h1 className='leading-tight'>Helloo Namee <br /> <span className='text-[14px]'>have a nice day</span></h1></a>
@@ -135,7 +137,7 @@ function Users() {
             <thead>
 
               <div><th className='text-[20px] p-5'>List Of Users</th></div>
-              <tr className='bg-sky-50 p-5 text-[16px]  '>
+              <tr className='bg-sky-50 p-5 text-[16px] '>
                 <th className='w-3/12'>Name</th>
                 <th className='w-3/12'>Username</th>
                 <th className='w-3/12'>Gender</th>
@@ -166,6 +168,9 @@ function Users() {
 
 
     </div>
+    </div>
+    
+    
   )
 }
 
